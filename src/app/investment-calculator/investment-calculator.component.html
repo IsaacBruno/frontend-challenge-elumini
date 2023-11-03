@@ -1,0 +1,68 @@
+<mat-card>
+  <mat-card-content *ngIf="!showResult">
+    <h3>Calculadora de investimentos online</h3>
+    <form [formGroup]="calculatorForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div>
+          <mat-form-field>
+            <mat-label>Investimento inicial</mat-label>
+            <input
+              formControlName="monetaryValue"
+              matInput
+              currencyMask
+              [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+            />
+            <mat-error
+              *ngIf="calculateFormControl['monetaryValue'].errors?.['required']"
+            >
+              Campo obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Prazo (em meses)</mat-label>
+            <input
+              formControlName="deadlineInMonths"
+              matInput
+              type="number"
+              min="1"
+            />
+            <mat-error
+              *ngIf="calculateFormControl['deadlineInMonths'].errors?.['required']"
+            >
+              Campo obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div colspan="2">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!calculatorForm.valid"
+          >
+            Calcular
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-content *ngIf="showResult">
+    <button mat-raised-button (click)="showResult = false">
+      <mat-icon>arrow_back</mat-icon> Fazer outra simulação
+    </button>
+    <h3>Resultado</h3>
+    <div class="result">
+      <div class="result-item">
+        <span>Valor total bruto</span>
+        <span>{{ grossAmount }}</span>
+      </div>
+      <div class="result-item">
+        <span>Valor total líquido</span>
+        <span>{{ netValue }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

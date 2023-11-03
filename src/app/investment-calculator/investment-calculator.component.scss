@@ -1,0 +1,33 @@
+.result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+
+  .result-item {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px 20px 24px;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+  }
+
+  span {
+    display: block;
+    font-size: 13px;
+    line-height: 18px;
+
+    &:nth-child(2) {
+      color: #455a64;
+      display: block;
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 27px;
+    }
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 200px);
+  column-gap: 20px;
+}
