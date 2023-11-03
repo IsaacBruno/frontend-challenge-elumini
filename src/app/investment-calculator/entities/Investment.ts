@@ -1,4 +1,4 @@
-import { NetValueCalculatorHandler } from "./NetValueCalculatorHandler";
+import { NetValueCalculatorHandler } from './NetValueCalculatorHandler';
 
 export class Investment {
   TB = 108 / 100;
@@ -14,6 +14,9 @@ export class Investment {
   }
 
   calculateNetValue(deadlineInMonths: number) {
-    return this.netValueCalculatorHandler.calculate(this, deadlineInMonths);
+    return this.netValueCalculatorHandler.calculate(
+      this.calculateGrossAmount(deadlineInMonths),
+      deadlineInMonths
+    );
   }
 }

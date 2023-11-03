@@ -1,5 +1,4 @@
-import { Investment } from "./Investment";
-import { NetValueCalculatorHandler } from "./NetValueCalculatorHandler";
+import { NetValueCalculatorHandler } from './NetValueCalculatorHandler';
 
 export class UpTo12MonthsNetValueCalculatorHandler extends NetValueCalculatorHandler {
   TAX = 20 / 100;
@@ -8,12 +7,11 @@ export class UpTo12MonthsNetValueCalculatorHandler extends NetValueCalculatorHan
     return this.TAX;
   }
 
-  calculate(investment: Investment, deadlineInMonths: number): number {
-    const grossAmount = investment.calculateGrossAmount(deadlineInMonths);
+  calculate(grossAmount: number, deadlineInMonths: number): number {
     if (deadlineInMonths > 6 && deadlineInMonths <= 12) {
       return this.calculateNetValue(grossAmount);
     }
-    if (!this.next) throw new Error("end of chain");
-    return this.next.calculate(investment, grossAmount);
+    if (!this.next) throw new Error('end of chain');
+    return this.next.calculate(grossAmount, deadlineInMonths);
   }
 }

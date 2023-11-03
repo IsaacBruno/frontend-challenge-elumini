@@ -1,7 +1,5 @@
-import { Investment } from "./Investment";
-
 export abstract class NetValueCalculatorHandler {
-  abstract calculate(investment: Investment, deadlineInMonths: number): number;
+  abstract calculate(grossAmount: number, deadlineInMonths: number): number;
   abstract getTax(): number;
 
   constructor(readonly next?: NetValueCalculatorHandler) {}
